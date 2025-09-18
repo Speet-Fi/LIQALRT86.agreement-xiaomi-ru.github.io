@@ -1,5 +1,32 @@
 <html>
   <head>
+     <style>
+    /* Стиль для скрытого блока с ответом */
+    .card--interactive .card__content {
+      display: none;
+      margin-top: 10px; /* Отступ для появившегося контента */
+    }
+
+    /* Стиль для активного (открытого) элемента аккордеона */
+    .card--interactive.active .card__content {
+      display: block;
+    }
+
+    /* (Опционально) Добавляем индикатор-стрелочку к заголовку */
+    .card--interactive .card__title-area {
+      cursor: pointer; /* Меняем курсор на "руку" */
+      position: relative;
+    }
+    .card--interactive .card__title-area__icon::after {
+      content: ""; /* Символ стрелки вниз */
+      font-size: 0.8em;
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    .card--interactive.active .card__title-area__icon::after {
+      transform: rotate(180deg); /* Разворачиваем стрелку при открытии */
+    }
+  </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Xiaomi PC Manager RU</title>
@@ -26,13 +53,22 @@
           <div class="icon"></div>
           <div class="title">Xiaomi PC Manager</div>
         </div>
-        <div class="d-btn disabled">
+        <a href="https://cdn.cnbj1.fds.api.mi-img.com/ota-packages/0ric_XiaomiSetup_master_4.5.0.2025_3394b43a.exe" class="d-btn disabled" id="downloadButton" download>
           <img style="width:15px" src="//notebook.cdn.pc.mi.com/notebook-fe--pc-mi-com-next/static/_next/static/media/d.7cf6ddfb.svg" alt="">
           <span>Скачать</span>
+        </a>
+        <div class="d-agreement">
+          <input type="checkbox" id="agreementCheckbox"> <!-- Добавлен id -->
+          <label for="agreementCheckbox">Для скачивания ознакомьтесь и согласитесь с <!-- Обернули текст в label для удобства -->
+            <a class="link" target="_blank" href="https://privacy.mi.com/PCManager/zh_CN/">"Приватность"</a> и 
+            <a class="link" target="_blank" href="https://pc.mi.com/agreement">"Соглашение"</a>.
+          </label>
         </div>
+        <!-- 
         <div class="d-agreement">
           <input type="checkbox">Для скачивания ознакомьтесь и согласитесь с <a class="link" target="_blank" href="https://privacy.mi.com/PCManager/zh_CN/">"Приватность"</a> и <a class="link" target="_blank" href="https://pc.mi.com/agreement">"Соглашение"</a>.
         </div>
+      -->
         <div class="title-line"></div>
         <div class="segment-title segment-title--first">Официально поддерживаемые устройства:</div>
         <div>
@@ -98,7 +134,7 @@
             </div>
             <div class="card__content">
               <p class="card__content_p">Xiaomi Pad 6 Max 14</p>
-              <p class="card__content_p card__content_more" id="more_content_pad">О сроках выхода обновлений для других моделей сообщим позже. <a href="https://web.vip.miui.com/page/info/mio/mio/detail?postId=42105346&amp;ref=miui_banner" target="_blank" rel="noopener noreferrer" class="card__content_link">Xiaomi</a></p>
+              <p class="card__content_p card__content_more" id="more_content_pad">О сроках выхода для других моделей сообщим позже. <a href="https://web.vip.miui.com/page/info/mio/mio/detail?postId=42105346&amp;ref=miui_banner" target="_blank" rel="noopener noreferrer" class="card__content_link">Xiaomi Community</a></p>
               <p class="card__content_p next_line" style="display:none">*以下机型，部分互联能力仍可使用，建议您根据发版计划，升级到最新的Hyper OS系统，获得更好的互联体验</p>
               <p class="card__content_p next_line" style="color:rgba(0, 0, 0, 0.5);display:none">小米平板5 、小米平板5 Pro 、小米平板5 Pro 5G、小米平板5 Pro 12.4、Xiaomi Pad 6、Xiaomi Pad 6 Pro</p>
               <p class="card__content_p card__content_link" id="op_pad">Подробнее</p>
@@ -130,17 +166,17 @@
               <div class="card__content__li">
                 <div class="card__content__li__index">1</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认本机、手机均已开启蓝牙、WLAN开关并登录相同小米账号，保持手机亮屏且设备靠近</div>
+                <div class="card__content__li__text">Убедитесь, что на обоих устройствах (этом и телефоне) включены Bluetooth и Wi-Fi, выполнен вход в одну и ту же учётную запись Xiaomi, экран телефона активен, а устройства находятся рядом.</div>
               </div>
               <div class="card__content__li">
                 <div class="card__content__li__index">2</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">建议手机系统版本升级至Xiaomi HyperOS1.0及以上</div>
+                <div class="card__content__li__text">Рекомендуется обновить версию системы телефона до Xiaomi HyperOS 1.0 или выше.</div>
               </div>
               <div class="card__content__li">
                 <div class="card__content__li__index">3</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认手机已在「设置-互联互通」开启了"互联互通服务"开关</div>
+                <div class="card__content__li__text">Убедитесь, что на телефоне в «Настройки - Взаимосвязь и обмен» включен переключатель «Служба взаимосвязи».</div>
               </div>
             </div>
           </div>
@@ -154,17 +190,17 @@
               <div class="card__content__li">
                 <div class="card__content__li__index">1</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认本机、平板均已开启蓝牙、WLAN开关并登录相同小米账号，保持平板亮屏且设备靠近</div>
+                <div class="card__content__li__text">Убедитесь, что на обоих устройствах (этом и планшете) включены Bluetooth и Wi-Fi, выполнен вход в одну и ту же учётную запись Xiaomi, экран планшета активен, а устройства находятся рядом.</div>
               </div>
               <div class="card__content__li">
                 <div class="card__content__li__index">2</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">建议平板系统版本升级至Xiaomi HyperOS1.0及以上</div>
+                <div class="card__content__li__text">Рекомендуется обновить версию системы планшета до Xiaomi HyperOS 1.0 или выше.</div>
               </div>
               <div class="card__content__li">
                 <div class="card__content__li__index">3</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认平板已在「设置-互联互通」开启了"互联互通服务"开关</div>
+                <div class="card__content__li__text">Убедитесь, что на планшете в «Настройки - Взаимосвязь и обмен» включен переключатель «Служба взаимосвязи».</div>
               </div>
             </div>
           </div>
@@ -179,12 +215,12 @@
               <div class="card__content__li">
                 <div class="card__content__li__index">1</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认本机已开启蓝牙</div>
+                <div class="card__content__li__text">Убедитесь, что на этом устройстве включен Bluetooth.</div>
               </div>
               <div class="card__content__li">
                 <div class="card__content__li__index">2</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认小米电脑管家客户端设置页“耳机快连”开关为开启状态</div>
+                <div class="card__content__li__text">Убедитесь, что переключатель «Быстрое подключение наушников» на странице настроек клиента Xiaomi PC Manager включен.</div>
               </div>
             </div>
           </div>
@@ -198,14 +234,14 @@
               <div class="card__content__li">
                 <div class="card__content__li__index">1</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认本机已开启蓝牙和Wi-Fi，并与电视连接至同一Wi-Fi</div>
+                <div class="card__content__li__text">Убедитесь, что на этом устройстве включены Bluetooth и Wi-Fi, и оно подключено к тому же Wi-Fi, что и телевизор.</div>
               </div>
               <div class="card__content__li">
                 <div class="card__content__li__index">2</div>
                 <div class="card__content__li__dot">.</div>
-                <div class="card__content__li__text">确认电视无线投屏应用已升级至1.9.57以上版本</div>
+                <div class="card__content__li__text">Убедитесь, что приложение беспроводной трансляции на телевизоре обновлено до версии 1.9.57 или выше.</div>
               </div>
-              <div class="card__content__li tip">部分小米电视支持在电视无线投屏，自定义设备搜索条件和验证方式 （设置路径：无线投屏-&gt;投屏设置）</div>
+              <div class="card__content__li tip">Некоторые телевизоры Xiaomi поддерживают беспроводную трансляцию с настройкой условий поиска устройств и методов проверки (путь: Беспроводная трансляция -> Настройки трансляции).</div>
             </div>
           </div>
         </div>
@@ -231,45 +267,45 @@
               <span class="card__title-area__title">Q3. Как использовать NFC для мгновенного доступа?</span>
             </div>
             <div class="card__content">
-              <div>请使用手机NFC区域与电脑触控板对应区域触碰，可快速开启手机镜像；在手机相册、文件管理选中要发送的图片、视频、文档时，一碰即可传输至电脑。</div>
+              <div>Для быстрого запуска трансляции экрана телефона коснитесь областью NFC телефона соответствующей зоны сенсорной панели ноутбука. Чтобы передать файлы (фото, видео, документы) на компьютер, выберите их в галерее или файловом менеджере и коснитесь панели.</div>
               <br>
-              <div>当前支持机型如下：</div>笔记本：支持Redmi Book 14（2023款）； <br>手机：支持Xiaomi 13 Ultra、Xiaomi 12 Pro、Xiaomi 12S Pro、Xiaomi 12S Ultra、Xiaomi 12S、Xiaomi 12、Redmi K50 Ultra、Redmi K50G、Redmi K50、Redmi K50 Pro、Xiaomi 12 Pro Dimensity、Redmi K40S、Xiaomi 13 Pro、Xiaomi 13、MIX4、Redmi K60 Pro、Redmi K60、Redmi K60E、Mi 11 Ultra、Mi 11、Mi 11 Pro、Mi 11 Lite 5G、Redmi K40、Redmi K40游戏增强版、Redmi K40 Pro、Xiaomi 12X、Mi 10S、Xiaomi MIX Fold 2、Redmi Note 12 Pro 极速版、Xiaomi Civi 1S、Redmi Note 12 Pro、Redmi Note 12 Pro+、Redmi Note 12 潮流版、Redmi Note 12 探索版、Xiaomi Civi2、Redmi Note 11T Pro、Redmi Note 11T Pro+、Mi 10 Pro、Mi 10、Mi 10 Ultra、Redmi K30S至尊纪念版、Redmi K30 Pro、Xiaomi MIX Fold、Redmi Note 12 Turbo；需确认系统应用版本：互联互通服务升级至14.4.0.0及以上、跨屏协同服务升级至3.7.77.d及以上、小米互联通信服务升级至2.14.107及以上、相册升级至3.5.2.9及以上、文件管理升级至4.4.5.7及以上。
+              <div>Текущие поддерживаемые модели: </div>Ноутбуки: Redmi Book 14 (2023); <br>Телефоны: Xiaomi 13 Ultra, 12 Pro, 12S Pro, 12S Ultra, 12S, 12, Redmi K50 Ultra, K50G, K50, K50 Pro, 12 Pro Dimensity, K40S, 13 Pro, 13, MIX4, K60 Pro, K60, K60E, Mi 11 Ultra, 11, 11 Pro, 11 Lite 5G, K40, K40 Gaming Enhanced, K40 Pro, 12X, Mi 10S, MIX Fold 2, Note 12 Pro Speed, Civi 1S, Note 12 Pro, 12 Pro+, 12 Trend, 12 Explorer, Civi2, Note 11T Pro, 11T Pro+, Mi 10 Pro, 10, 10 Ultra, K30S Ultra Memorial, K30 Pro, MIX Fold, Note 12 Turbo. Требуемые версии системных приложений: Служба взаимосвязи — 14.4.0.0 и выше, Сервис кроссплатформенной синхронизации — 3.7.77.d и выше, Служба связи Xiaomi — 2.14.107 и выше, Галерея — 3.5.2.9 и выше, Файловый менеджер — 4.4.5.7 и выше.
             </div>
           </div>
           <div class="card card--interactive">
             <div class="card__title-area">
               <div class="card__title-area__icon"></div>
-              <span class="card__title-area__title">Q4. 如何在妙享桌面上打开三个窗口？</span>
+              <span class="card__title-area__title">Q4. Как открыть три окна в Mi Share Desktop?</span>
             </div>
             <div class="card__content">
-              <div>手机打开妙享桌面，点击如下图标，最多可打开三个窗口</div>
+              <div>На телефоне откройте Mi Share Desktop и нажмите на значок ниже, чтобы открыть до трёх окон.</div>
               <div class="card__content__q4"></div>
             </div>
           </div>
           <div class="card card--interactive">
             <div class="card__title-area">
               <div class="card__title-area__icon"></div>
-              <span class="card__title-area__title">Q5. 电脑如何搜索手机、Pad的文件？</span>
+              <span class="card__title-area__title">Q5. Как найти файлы на телефоне или планшете с компьютера?</span>
             </div>
             <div class="card__content">
-              <div>手机打开全局搜索，开启文件管理、相册的「搜索项」权限 <br>若希望体验AI搜索服务，请将搜索项设置为“AI增强搜索” </div>
+              <div>Включите глобальный поиск на телефоне, предоставьте разрешения на поиск для «Файлов» и «Галереи». <br>Для доступа к AI-поиску выберите опцию «Усиленный AI-поиск».</div>
               <div class="card__content__q5"></div>
             </div>
           </div>
           <div class="card card--interactive">
             <div class="card__title-area">
               <div class="card__title-area__icon"></div>
-              <span class="card__title-area__title">Q6. 平板无法绑定电脑进行远程控制？</span>
+              <span class="card__title-area__title">Q6. Планшет не подключается к ПК для удалённого управления?</span>
             </div>
             <div class="card__content">
-              <div>确认平板与电脑均已登录同一小米账号 <br>确认平板上「远程控制」应用，已升级至5.1.1及以上版本，若为较低版本，可下载安装包并拷贝至平板中安装更新 <br>平板端安装包： <a href="https://remotecontrol.xiaomi.com/download/apk/MFMi_Pad.5.1.4-release.apk" target="_blank" rel="noopener noreferrer" class="card__content_link">点此下载</a>
+              <div>Убедитесь, что планшет и ПК используют один аккаунт Xiaomi. <br>Обновите приложение «Удалённое управление» на планшете до версии 5.1.1+. Если версия устарела, скачайте и установите обновление вручную. <br>Скачать для планшета: <a href="https://remotecontrol.xiaomi.com/download/apk/MFMi_Pad.5.1.4-release.apk" target="_blank" rel="noopener noreferrer" class="card__content_link">ссылка</a>
                 <br>
-                <br>当前支持机型如下： <br>笔记本：支持Redmi Book Pro 14/16（2024款）、REDMI Book Pro 14/16（2025款）、REDMI Book 14/16（2025款）、 REDMI Book 14 2.8K （2025款）、REDMI Book 16 2.5K （2025款）、Redmi Book 14、Redmi Book 14 2024（Gen13 2.1K）、 Redmi Book 14 2024、Redmi Book 16 2024、REDMI Book 14 2025(AMD)、REDMI Book 14 2025(FHD+ 12th)、REDMI Book 14 2025 (FHD+) <br>平板：支持Xiaomi Pad 6S Pro 12.4、Xiaomi Pad 7、REDMI K Pad系列
+                <br>Поддерживаемые модели: <br>Ноутбуки: Redmi Book Pro 14/16 (2024), REDMI Book Pro 14/16 (2025), REDMI Book 14/16 (2025), REDMI Book 14 2.8K (2025), REDMI Book 16 2.5K (2025), Redmi Book 14, Redmi Book 14 2024 (Gen13 2.1K), Redmi Book 14 2024, Redmi Book 16 2024, REDMI Book 14 2025 (AMD), REDMI Book 14 2025 (FHD+ 12th), REDMI Book 14 2025 (FHD+).<br>Планшеты: Xiaomi Pad 6S Pro 12.4, Xiaomi Pad 7, серия REDMI K Pad.
               </div>
             </div>
           </div>
           <div class="bottom_more_see">
-            <a href="https://hyperos.mi.com/continuity/abilities" target="_blank" rel="noopener noreferrer" class="card__content_link">https://hyperos.mi.com/continuity/abilities</a> 点击了解更多Xiaomi Hyper Connect跨端智联能力
+            <a href="https://hyperos.mi.com/continuity/abilities" target="_blank" rel="noopener noreferrer" class="card__content_link">https://hyperos.mi.com/continuity/abilities</a> Узнайте больше о экосистеме Xiaomi HyperConnect
           </div>
         </div>
       </div>
@@ -279,7 +315,7 @@
         "props": {
           "pageProps": {}
         },
-        "page": "/pc-manager-help",
+        "page": "/pc-manager-help-ru",
         "query": {},
         "buildId": "troKQlGmMlK7DnVcZcVqz",
         "assetPrefix": "//notebook.cdn.pc.mi.com/notebook-fe--pc-mi-com-next/static",
@@ -292,6 +328,60 @@
     <next-route-announcer>
       <p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; top: 0px; width: 1px; white-space: nowrap; overflow-wrap: normal;"></p>
     </next-route-announcer>
-  </body>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Находим все кликабельные карточки
+    const accordionItems = document.querySelectorAll('.card--interactive');
 
+    // Перебираем каждую карточку и добавляем обработчик
+    accordionItems.forEach(function(item) {
+      // Вешаем клик на весь заголовок карточки
+      const titleArea = item.querySelector('.card__title-area');
+      titleArea.addEventListener('click', function() {
+        // Переключаем класс 'active' у родительского элемента .card--interactive
+        item.classList.toggle('active');
+      });
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+
+  // Находим элементы на странице
+  const checkbox = document.getElementById('agreementCheckbox');
+  const downloadButton = document.getElementById('downloadButton');
+
+  // Проверяем, существуют ли элементы на странице (на всякий случай)
+  if (!checkbox || !downloadButton) return;
+
+  // Функция для обновления состояния кнопки
+  function updateButtonState() {
+    if (checkbox.checked) {
+      // Если галочка поставлена - делаем кнопку активной
+      downloadButton.classList.remove('disabled');
+      // Делаем кнопку действительно кликабельной
+      downloadButton.style.pointerEvents = 'auto';
+      downloadButton.style.opacity = '1'; // Делаем её ярче
+    } else {
+      // Если галочка убрана - делаем кнопку неактивной
+      downloadButton.classList.add('disabled');
+      // Делаем кнопку некликабельной и полупрозрачной
+      downloadButton.style.pointerEvents = 'none';
+      downloadButton.style.opacity = '0.5';
+    }
+  }
+
+  // Назначаем обработчик события на изменение состояния чекбокса
+  checkbox.addEventListener('change', updateButtonState);
+
+  // Вызываем функцию сразу, чтобы установить правильное состояние при загрузке страницы
+  updateButtonState();
+
+  // (Опционально) Обработчик для клика по кнопке, если нужны дополнительные действия (например, analytics)
+  downloadButton.addEventListener('click', function() {
+    console.log('Начато скачивание PC Manager...');
+    // Здесь можно добавить отправку события в Google Analytics или другую статистику
+  });
+
+});
+</script>
+  </body>
 </html>
